@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Book Manager</title>
+</head>
+
+<body>
+    <h1>Add Book</h1>
+    <form method="POST" action="/">
+        <input type="text" name="title" placeholder="Book Title">
+        <input type="submit" value="Add">
+    </form>
+
+    <h1>Books</h1>
+    {% for book in books %}
+    <div>
+        <p>{{ book.title }}</p>
+        <form method="POST" action="./update">
+            <input type="hidden" value="{{ book.title }}" name="oldtitle">
+            <input type="text" placeholder="{{ book.title }}" name="newtitle">
+            <input type="submit" value="Update">
+        </form>
+
+        <!-- Formulário de exclusão para cada livro -->
+        <form method="POST" action="./delete">
+            <input type="hidden" value="{{ book.title }}" name="title">
+            <input type="submit" value="Delete">
+        </form>
+    </div>
+    {% endfor %}
+
+</body>
+
+</html>
